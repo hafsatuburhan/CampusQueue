@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusQueue | Student Service Management</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">Q</div><div><h1>CampusQueue</h1><small>STUDENT SERVICES</small></div></div>
+    <nav>
+      <div class="nav-label">Workspace</div>
+      <div class="nav-item active"><span class="ico">▦</span> Dashboard</div>
+      <div class="nav-item"><span class="ico">☷</span> Queue management</div>
+      <div class="nav-item"><span class="ico">♙</span> Student services</div>
+    </nav>
+    <div class="sidebar-note"><strong>Queue principle</strong>First In, First Out (FIFO). Students who join first are served first.</div>
+  </aside>
+  <main>
+    <header class="topbar">
+      <div><div class="eyebrow">Student services / Overview</div><h2>Queue Dashboard</h2></div>
+      <div class="top-right"><div class="date-pill" id="todayDate"></div><div class="avatar">CS</div></div>
+    </header>
+    <section class="hero">
+      <div class="hero-copy"><div class="tag">Service desk overview</div><h3>Keep student services moving.</h3><p>Register students, manage the waiting line, and serve each student in the order they arrive.</p></div>
+      <div class="hero-number"><strong id="heroWaiting">0</strong><span>STUDENTS WAITING</span></div>
+    </section>
+    <section class="stats">
+      <div class="stat"><div class="stat-top">Students waiting <span class="stat-icon">☷</span></div><strong id="waitingCount">0</strong><small>Currently in the queue</small></div>
+      <div class="stat"><div class="stat-top">Students served <span class="stat-icon">✓</span></div><strong id="servedCount">0</strong><small>Completed service today</small></div>
+      <div class="stat"><div class="stat-top">Next in line <span class="stat-icon">↗</span></div><strong id="nextStudent" style="font-size:19px">—</strong><small>First student to be served</small></div>
+      <div class="stat"><div class="stat-top">Services available <span class="stat-icon">▤</span></div><strong>4</strong><small>Service categories</small></div>
+    </section>
+    <section class="content-grid">
+      <div class="panel">
+        <div class="panel-head"><div><h3>Register a student</h3><p>Add a student to the end of the queue.</p></div></div>
+        <div class="panel-body">
+          <form id="studentForm">
+            <div class="field"><label for="studentName">Student full name *</label><input id="studentName" maxlength="70" placeholder="e.g. Ama Mensah" required></div>
+            <div class="field"><label for="studentId">Student ID *</label><input id="studentId" maxlength="30" placeholder="e.g. PS/IT/001" required></div>
+            <div class="field"><label for="serviceType">Service required *</label><select id="serviceType" required><option value="Registration">Registration</option><option value="Examination">Examination</option><option value="Student Records">Student Records</option><option value="Fees & Finance">Fees &amp; Finance</option></select></div>
+            <button class="btn btn-primary" type="submit">＋ Add student to queue</button>
+          </form>
+          <p class="form-hint">New students are always added to the rear of the queue. Required fields must be completed.</p>
+          <div style="height:1px;background:var(--line);margin:22px 0 17px"></div>
+          <button class="btn btn-dark" id="serveBtn" style="width:100%">✓ Serve next student</button>
+          <p class="form-hint">Serving removes the student at the front and increases the served count.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><div><h3>Waiting queue</h3><p>Students are displayed in FIFO order.</p></div><div class="queue-toolbar"><input class="search" id="searchInput" placeholder="Search name or ID…" aria-label="Search queue"><button class="btn btn-light" id="exportBtn" type="button">Export CSV</button></div></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Position</th><th>Student</th><th>Service</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="queueBody"></tbody>
+          </table>
+          <div class="empty" id="emptyState"><div class="empty-icon">☷</div><strong>Your queue is clear</strong><span>Add a student using the registration form to get started.</span></div>
+        </div>
+        <div class="table-footer"><span id="queueSummary">0 students in queue</span><button class="btn btn-danger" id="clearBtn" type="button">Clear queue</button></div>
+      </div>
+    </section>
+        <!-- Recently Served Students -->
+    <section class="panel history-panel">
+      <div class="panel-head">
+        <div>
+          <h3>Recently Served</h3>
+          <p>Records of students who have completed their service.</p>
+        </div>
+
+        <button class="btn btn-light" id="exportHistoryBtn" type="button">
+          Export History
+        </button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Student ID</th>
+              <th>Service</th>
+              <th>Time Served</th>
+            </tr>
+          </thead>
+
+          <tbody id="historyBody"></tbody>
+        </table>
+
+        <div class="empty" id="historyEmpty">
+          <div class="empty-icon">✓</div>
+          <strong>No completed services yet</strong>
+          <span>Served students will appear here.</span>
+        </div>
+      </div>
+    </section>
+    <footer>CampusQueue · Student Service Queue Management System · Built to demonstrate the FIFO queue data structure</footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal"><h3 id="modalTitle">Clear waiting queue?</h3><p>This will remove all students currently waiting. The served count will remain unchanged.</p><div class="modal-actions"><button class="btn btn-light" id="cancelClear">Cancel</button><button class="btn btn-danger" id="confirmClear">Clear queue</button></div></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

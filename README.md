@@ -118,5 +118,4 @@ Project: CampusQueue — Student Service Management System
 Developer: Hafsatu Burhandeen
 Project Type: Web Application
 Technologies: HTML5, CSS3, JavaScript
-Deployment Platform: GitHub Pages# CampusQueue
-Student Service Management and Queue System
+Deployment Platform: GitHub Pages

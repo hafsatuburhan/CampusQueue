@@ -396,15 +396,14 @@ CampusQueue/
 
 Once GitHub Pages has been configured, users can open the application using its published URL.
 
-**Live Demo:** Add your actual GitHub Pages URL here.
-
-For example, the URL may follow this pattern:
-
-`https://yourusername.github.io/CampusQueue/`
-
-Replace the example with the actual URL generated for your repository.
-
 ---
+
+## 🌐 Live Demo
+
+Click the link below to access the CampusQueue application:
+
+👉 [Open CampusQueue]
+https://hafsatuburhan.github.io/CampusQueue/
 
 ## ✅ 12. Advantages
 
